@@ -4,6 +4,8 @@ var path = require('path');
 const app = express();
 const PORT = 3000;
 
+let count = 0;
+
 app.set('view engine', 'ejs');
 
 // parse data from url
@@ -15,6 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Include routes from different modules
 app.use('/', require('./routes/index'));
 app.use('/tags', require('./routes/tags'));
+app.use('/categories', require('./routes/categories'));
 
 app.listen(PORT, () => {
   console.log(`App is running on http://localhost:${PORT}`);
