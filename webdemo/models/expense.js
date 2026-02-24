@@ -1,10 +1,12 @@
 class Expense {
   /**
-   Represents a Expense.
-   @constructor
-   @param {date} date - The date of the expense.
-   @param {float} income - The author of the book.
- */
+   * Represents an Expense.
+   * @constructor
+   * @param {string} date - The date of the expense.
+   * @param {number} income - The amount of income.
+   * @param {number} expense - The amount of expense.
+   * @param {string} detail - The description or detail of the expense.
+   */
   constructor(date, income, expense, detail) {
     this.date = date;
     this.income = parseFloat(income) || 0;
@@ -14,39 +16,53 @@ class Expense {
 }
 
 /**
- * Class ExpenseModel.
+ * Class ExpenseModel to manage a collection of expenses.
  * @class
  */
 class ExpenseModel {
   constructor() {
+    /**
+     * @type {Expense[]}
+     */
     this.expenses = [];
   }
 
-/**
- * add expense numbers passed to the function.
- * @param {float} expense - A positive number.
- */
+  /**
+   * Add a new expense object to the list.
+   * @param {Expense} expense - An instance of the Expense class.
+   */
   add(expense) {
     this.expenses.push(expense);
   }
 
-/**
- * return expense numbers from stack.
- * @return {array} expense - array of positive number
- */
-
+  /**
+   * Return all expense objects from the list.
+   * @return {Expense[]} An array of Expense objects.
+   */
   getAll() {
     return this.expenses;
   }
 
+  /**
+   * Calculate the total income from all expenses.
+   * @return {number} The sum of all income values.
+   */
   getTotalIncome() {
     return this.expenses.reduce((sum, exp) => sum + exp.income, 0);
   }
 
+  /**
+   * Calculate the total expense from all expenses.
+   * @return {number} The sum of all expense values.
+   */
   getTotalExpense() {
     return this.expenses.reduce((sum, exp) => sum + exp.expense, 0);
   }
 
+  /**
+   * Calculate the remaining money (Income - Expense).
+   * @return {number} The balance left.
+   */
   getMoneyLeft() {
     return this.getTotalIncome() - this.getTotalExpense();
   }
