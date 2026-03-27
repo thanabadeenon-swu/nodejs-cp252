@@ -29,12 +29,17 @@ class UserData {
 
     //Method to clear two users
     removeTwoUser() {
-        if ( this.users.length > 0 ) {
-            removeOneUser();
-            removeOneUser();
-        }else{
-            return null
-        }       
+        if (this.users.length >= 2) {
+            this.removeOneUser(); // ต้องใช้ this. นำหน้าเสมอเพื่อเรียก method ใน class
+            this.removeOneUser();
+            return true; 
+        } else if (this.users.length === 1) {
+            // กรณีเหลือคนเดียว ก็ลบคนเดียว
+            this.removeOneUser();
+            return true;
+        } else {
+            return null;
+        }
     }
 
     // Method to clear all users
